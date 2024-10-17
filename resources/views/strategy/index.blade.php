@@ -8,6 +8,10 @@
 </head>
 <body>
 <h1>All Strategies</h1>
+@if (auth()->check())
+    <a href="{{ route('strategy.create') }}">Create Strat</a>
+@else <h2>Login in to create posts</h2>
+@endif
 <ul>
     @foreach ($strategies as $strategy)
         <li><a href="{{ route('strategy.show', $strategy->id) }}">{{ $strategy->title }}</a></li>

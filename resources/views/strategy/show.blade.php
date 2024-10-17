@@ -11,5 +11,14 @@
 <p>{{ $strategy->description }}</p>
 <p>Game Version: {{ $strategy->game_version }}</p>
 <p>Gym Leader: {{ $strategy->gym_leader }}</p>
+
+@if (auth()->id() === $strategy->user_id)
+
+    <form action="{{ route('strategy.destroy', $strategy) }}" method="POST">
+        @csrf
+        @method('DELETE')
+        <button type="submit">Delete Strategy</button>
+    </form>
+@endif
 </body>
 </html>

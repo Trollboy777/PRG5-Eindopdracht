@@ -22,7 +22,7 @@ class StrategyController extends Controller
      */
     public function create() // hhtps://localhost:8000/Strategies/create
     {
-        //
+        return view('strategy.create');
     }
 
     /**
@@ -30,7 +30,17 @@ class StrategyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $strategy = new Strategy();
+        $strategy->title = $request->input('title');
+        $strategy->description = $request->input('description');
+        $strategy->game_version = $request->input('game_version');
+        $strategy->gym_leader = $request->input('gym_leader');
+        $strategy->user_id = auth()->id();
+        $strategy->save();
+
+
+        return redirect('strategy');
     }
 
     /**
@@ -62,6 +72,15 @@ class StrategyController extends Controller
      */
     public function destroy(Strategy $strategy)
     {
-        //
+        if (auth()->id() !== $strategy->user_id) {
+
+            abort(403, 'Unauthorized action.');
+        }
+
+        $strategy->delete();
+
+
+        return redirect()->route('strategy.index')->with('status', 'Strategy deleted successfully');
     }
+
 }

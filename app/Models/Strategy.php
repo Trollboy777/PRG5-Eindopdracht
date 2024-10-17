@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Strategy extends Model
 {
+    public function user() : \Illuminate\Database\Eloquent\Relations\BelongsTo {
+        return $this->belongsTo(User::class);
+    }
     use HasFactory;
+
 }
