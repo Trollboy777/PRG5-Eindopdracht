@@ -12,4 +12,11 @@ class Strategy extends Model
     }
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'description',
+        'game_version',
+        'gym_leader',
+    ];
+
 }

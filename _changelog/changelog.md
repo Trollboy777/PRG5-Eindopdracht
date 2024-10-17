@@ -8,3 +8,5 @@ Ik heb de eerste CRUD functionnaliteit (READ) volledig geimplementeerd. Dus de s
 Ik heb de Create functionaliteit afgemaakt 16-10
 
 Ik heb nu ook de Delete afgemaakt 17-10
+
+Alle CRUD functionalliteiten zijn af en je kan alleen strategies maken als je ingelogd bent. Je kan alleen je eigen strategie bewerken en verwijderen 17-10

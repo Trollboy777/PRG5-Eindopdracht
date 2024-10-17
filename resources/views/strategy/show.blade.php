@@ -13,7 +13,7 @@
 <p>Gym Leader: {{ $strategy->gym_leader }}</p>
 
 @if (auth()->id() === $strategy->user_id)
-
+    <a href="{{ route('strategy.edit', $strategy->id) }}">Edit Strategy</a>
     <form action="{{ route('strategy.destroy', $strategy) }}" method="POST">
         @csrf
         @method('DELETE')

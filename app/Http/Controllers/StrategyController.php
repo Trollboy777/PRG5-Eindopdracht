@@ -56,7 +56,11 @@ class StrategyController extends Controller
      */
     public function edit(Strategy $strategy)
     {
-        //
+        if (auth()->id() !== $strategy->user_id) {
+
+            abort(403, 'Unauthorized action.');
+        }
+        return view('strategy.edit', compact('strategy'));
     }
 
     /**
@@ -64,7 +68,26 @@ class StrategyController extends Controller
      */
     public function update(Request $request, Strategy $strategy)
     {
-        //
+        if (auth()->id() !== $strategy->user_id) {
+
+            abort(403, 'Unauthorized action.');
+        }
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
+            'game_version' => 'required|string',
+            'gym_leader' => 'required|string',
+        ]);
+
+        // Update de strategy
+            $strategy->update([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'game_version' => $request->input('game_version'),
+            'gym_leader' => $request->input('gym_leader'),
+        ]);
+
+        return redirect()->route('strategy.index')->with('status', 'Strategy updated successfully');
     }
 
     /**
