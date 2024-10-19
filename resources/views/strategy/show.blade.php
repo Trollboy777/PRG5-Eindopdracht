@@ -11,6 +11,7 @@
 <p>{{ $strategy->description }}</p>
 <p>Game Version: {{ $strategy->game_version }}</p>
 <p>Gym Leader: {{ $strategy->gym_leader }}</p>
+<p>Creator: {{$strategy->user->name}}</p>
 
 @if (auth()->id() === $strategy->user_id)
     <a href="{{ route('strategy.edit', $strategy->id) }}">Edit Strategy</a>

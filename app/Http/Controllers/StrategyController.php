@@ -12,7 +12,7 @@ class StrategyController extends Controller
      */
     public function index() // hhtps://localhost:8000/Strategies/ get
     {
-       $strategies = Strategy::all();
+       $strategies = Strategy::with('user')->get();
         return view('strategy.index', compact('strategies'));
 
     }
@@ -48,6 +48,7 @@ class StrategyController extends Controller
      */
     public function show(Strategy $strategy)
     {
+        $strategy->load('user');
         return view('strategy.show', compact('strategy'));
     }
 

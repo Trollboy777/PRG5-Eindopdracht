@@ -14,7 +14,9 @@
 @endif
 <ul>
     @foreach ($strategies as $strategy)
-        <li><a href="{{ route('strategy.show', $strategy->id) }}">{{ $strategy->title }}</a></li>
+        <li><a href="{{ route('strategy.show', $strategy->id) }}">{{ $strategy->title }}</a>
+        <p>{{$strategy->user->name}}</p>
+        </li>
     @endforeach
 </ul>
 </body>
