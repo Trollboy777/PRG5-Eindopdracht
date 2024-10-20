@@ -1,8 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Strategy;
+use App\Models\GymLeader;
+
+
 use Illuminate\Http\Request;
 
 class StrategyController extends Controller
@@ -12,9 +14,8 @@ class StrategyController extends Controller
      */
     public function index() // hhtps://localhost:8000/Strategies/ get
     {
-       $strategies = Strategy::with('user')->get();
+        $strategies = Strategy::with('user', 'gymLeader')->get();
         return view('strategy.index', compact('strategies'));
-
     }
 
     /**
@@ -22,7 +23,8 @@ class StrategyController extends Controller
      */
     public function create() // hhtps://localhost:8000/Strategies/create
     {
-        return view('strategy.create');
+        $gymleaders = GymLeader::all();
+        return view('strategy.create', compact('gymleaders'));
     }
 
     /**
@@ -31,16 +33,23 @@ class StrategyController extends Controller
     public function store(Request $request)
     {
 
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
+            'game_version' => 'required|string',
+            'gym_leader_id' => 'required|exists:gym_leaders,id',
+        ]);
+
+
         $strategy = new Strategy();
-        $strategy->title = $request->input('title');
-        $strategy->description = $request->input('description');
-        $strategy->game_version = $request->input('game_version');
-        $strategy->gym_leader = $request->input('gym_leader');
-        $strategy->user_id = auth()->id();
+        $strategy->title = $validated['title'];
+        $strategy->description = $validated['description'];
+        $strategy->game_version = $validated['game_version'];
+        $strategy->gym_leader_id = $validated['gym_leader_id'];
+        $strategy->user_id = auth()->id(); // Auth-gebruiker ID opslaan
         $strategy->save();
 
-
-        return redirect('strategy');
+        return redirect()->route('strategy.index')->with('status', 'Strategy created successfully');
     }
 
     /**
@@ -48,7 +57,7 @@ class StrategyController extends Controller
      */
     public function show(Strategy $strategy)
     {
-        $strategy->load('user');
+        $strategy->load('user', 'gymLeader');
         return view('strategy.show', compact('strategy'));
     }
 
@@ -58,10 +67,11 @@ class StrategyController extends Controller
     public function edit(Strategy $strategy)
     {
         if (auth()->id() !== $strategy->user_id) {
-
             abort(403, 'Unauthorized action.');
         }
-        return view('strategy.edit', compact('strategy'));
+
+        $gymleaders = GymLeader::all();
+        return view('strategy.edit', compact('strategy', 'gymleaders'));
     }
 
     /**
@@ -70,22 +80,23 @@ class StrategyController extends Controller
     public function update(Request $request, Strategy $strategy)
     {
         if (auth()->id() !== $strategy->user_id) {
-
             abort(403, 'Unauthorized action.');
         }
-        $request->validate([
+
+
+        $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string|max:1000',
             'game_version' => 'required|string',
-            'gym_leader' => 'required|string',
+            'gym_leader_id' => 'required|exists:gym_leaders,id',
         ]);
 
-        // Update de strategy
-            $strategy->update([
-            'title' => $request->input('title'),
-            'description' => $request->input('description'),
-            'game_version' => $request->input('game_version'),
-            'gym_leader' => $request->input('gym_leader'),
+        // Strategy bijwerken
+        $strategy->update([
+            'title' => $validated['title'],
+            'description' => $validated['description'],
+            'game_version' => $validated['game_version'],
+            'gym_leader_id' => $validated['gym_leader_id'],
         ]);
 
         return redirect()->route('strategy.index')->with('status', 'Strategy updated successfully');
@@ -97,14 +108,11 @@ class StrategyController extends Controller
     public function destroy(Strategy $strategy)
     {
         if (auth()->id() !== $strategy->user_id) {
-
             abort(403, 'Unauthorized action.');
         }
 
         $strategy->delete();
 
-
         return redirect()->route('strategy.index')->with('status', 'Strategy deleted successfully');
     }
-
 }

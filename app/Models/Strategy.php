@@ -16,7 +16,11 @@ class Strategy extends Model
         'title',
         'description',
         'game_version',
-        'gym_leader',
+        'gym_leader_id',
     ];
+    public function gymLeader() : \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(GymLeader::class);
+    }
 
 }
