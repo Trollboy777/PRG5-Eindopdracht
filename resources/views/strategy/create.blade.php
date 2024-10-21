@@ -11,17 +11,17 @@
     @csrf
     <div>
         <label for="title">Title</label>
-        <input type="text" id="title" name="title" required>
+        <input type="text" id="title" name="title" value="{{ old('title') }}">
     </div>
 
     <div>
         <label for="description">Description</label>
-        <input type="text" id="description" name="description" required>
+        <input type="text" id="description" name="description" >
     </div>
 
     <div>
         <label for="game_version">Game Version</label>
-        <select id="game_version" name="game_version" required>
+        <select id="game_version" name="game_version">
             <option value="Red Blue & Yellow">Red Blue & Yellow</option>
             <option value="Gold Silver & Crystal">Gold Silver & Crystal</option>
             <option value="Ruby Sapphire & Emerald">Ruby Sapphire & Emerald</option>
@@ -38,7 +38,7 @@
 
     <div>
         <label for="gym_leader">Gym Leader</label>
-        <select id="gym_leader" name="gym_leader_id" required>
+        <select id="gym_leader" name="gym_leader_id">
             @foreach($gymleaders as $gymleader)
                 <option value="{{ $gymleader->id }}">{{ $gymleader->name }}</option>
             @endforeach

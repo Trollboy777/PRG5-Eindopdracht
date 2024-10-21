@@ -5,6 +5,7 @@ use App\Models\Strategy;
 use App\Models\GymLeader;
 
 
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class StrategyController extends Controller
@@ -12,11 +13,27 @@ class StrategyController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() // hhtps://localhost:8000/Strategies/ get
+    public function index(Request $request)
     {
-        $strategies = Strategy::with('user', 'gymLeader')->get();
-        return view('strategy.index', compact('strategies'));
+        $types = Tag::select('id','name')->get();
+
+        $query = Strategy::with('user', 'gymLeader'); // Start de query met relaties
+
+        // Als er een type is geselecteerd, pas de filter toe op basis van tag_id
+        if ($request->has('type')) {
+            $typeId = $request->input('type'); // Verwacht nu de tag ID in plaats van de naam
+            $query->whereHas('gymLeader', function ($query) use ($typeId) {
+                $query->where('tag_id', $typeId); // Filter op de tag_id van de gym leader
+            });
+        }
+
+        // Voer de query uit om de strategies op te halen (inclusief filters als die er zijn)
+        $strategies = $query->get();
+
+        // Stuur de gefilterde strategies en types naar de view
+        return view('strategy.index', compact('strategies', 'types'));
     }
+
 
     /**
      * Show the form for creating a new resource.

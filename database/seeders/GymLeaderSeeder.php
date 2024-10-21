@@ -57,12 +57,16 @@ class GymLeaderSeeder extends Seeder
             // Generatie 5: Unova
             ['name' => 'Chili', 'tag_id' => 7],      // Fire
             ['name' => 'Cress', 'tag_id' => 2],      // Water
+            ['name' => 'Cilan', 'tag_id' => 4],      // Grass
+            ['name' => 'Burgh', 'tag_id' => 10],      // Bug
             ['name' => 'Elesa', 'tag_id' => 3],      // Electric
             ['name' => 'Clay', 'tag_id' => 8],       // Ground
             ['name' => 'Skyla', 'tag_id' => 9],      // Flying
             ['name' => 'Brycen', 'tag_id' => 15],    // Ice
             ['name' => 'Drayden', 'tag_id' => 16],   // Dragon
             ['name' => 'Iris', 'tag_id' => 16],      // Dragon
+            ['name' => 'Roxie', 'tag_id' => 5],      // Poison
+            ['name' => 'Marlon', 'tag_id' => 2],      // Water
 
             // Generatie 6: Kalos
             ['name' => 'Viola', 'tag_id' => 10],     // Bug
@@ -91,6 +95,8 @@ class GymLeaderSeeder extends Seeder
             ['name' => 'Allister', 'tag_id' => 12],  // Ghost
             ['name' => 'Opal', 'tag_id' => 17],      // Fairy
             ['name' => 'Gordie', 'tag_id' => 1],     // Rock
+            ['name' => 'Melony', 'tag_id' => 15],     // Ice
+            ['name' => 'Piers', 'tag_id' => 18],     // Dark
             ['name' => 'Raihan', 'tag_id' => 16],    // Dragon
 
             // Generatie 9: Paldea
@@ -98,6 +104,7 @@ class GymLeaderSeeder extends Seeder
             ['name' => 'Brassius', 'tag_id' => 4],   // Grass
             ['name' => 'Iono', 'tag_id' => 3],       // Electric
             ['name' => 'Kofu', 'tag_id' => 2],       // Water
+            ['name' => 'Larry', 'tag_id' => 11],       // Larry
             ['name' => 'Thyme', 'tag_id' => 12],     // Ghost
             ['name' => 'Tullip', 'tag_id' => 6],     // Psychic
             ['name' => 'Grusha', 'tag_id' => 15],    // Ice
