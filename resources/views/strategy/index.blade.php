@@ -9,6 +9,13 @@
 <body>
 <h1>All Strategies</h1>
 
+<form action="{{route('strategy.index')}}" method="get">
+    <label for="search">Search For A Strategy</label>
+    <input type="text" name="search" id="search" placeholder="Search Strategy" value="{{request('search')}}">
+    <button type="submit">Search</button>
+
+
+</form>
 <div>
     <h3>Filter by Type:</h3>
     <a href="{{ route('strategy.index') }}">All</a> <!-- Knop om filter te verwijderen -->

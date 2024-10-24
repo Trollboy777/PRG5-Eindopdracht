@@ -27,6 +27,11 @@ class StrategyController extends Controller
             });
         }
 
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->where('title', 'like', '%'. $search. '%');
+        }
+
         // Voer de query uit om de strategies op te halen (inclusief filters als die er zijn)
         $strategies = $query->get();
 
