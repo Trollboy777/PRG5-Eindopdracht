@@ -74,7 +74,7 @@ class StrategyController extends Controller
      */
     public function show(Strategy $strategy)
     {
-        $strategy->load('user', 'gymLeader');
+        $strategy->load('user', 'GymLeader');
         return view('strategy.show', compact('strategy'));
     }
 

@@ -10,7 +10,7 @@
 <h1>{{ $strategy->title }}</h1>
 <p>{{ $strategy->description }}</p>
 <p>Game Version: {{ $strategy->game_version }}</p>
-<p>Gym Leader: {{ $strategy->gym_leader }}</p>
+<p>Gym Leader: {{ $strategy->GymLeader->name}}</p>
 <p>Creator: {{$strategy->user->name}}</p>
 
 @if (auth()->id() === $strategy->user_id)
