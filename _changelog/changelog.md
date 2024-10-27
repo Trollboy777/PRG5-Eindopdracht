@@ -15,3 +15,7 @@ Ik heb mijn databse omgebouwd, dus dat er een gym_leaders table is en natuurlijk
 
 Ik heb mijn seeders aangepast, zodat er alleen maar 18 tags is een per type. Nu lukt het filteren ook op basis van de type_id. 21-10
 
+Ik heb de search functie ook af, zodat je kan zoeken op basis van de titel van een strategie. Ik heb ook een bugfix gedaan en je kun weer de gym leader zien bij de show page. De probleem was, omdat ik van gym_leaders een table heb gemaakt had ik dat wijziging nog niet aangepast bij de show page. 24-10
+
+Ik heb de comment systeem af, dus je kan bij een specifieke strategy comments gaan plaatsen, natuurlijk als je alleen ingelogd bent. 27-10
+
