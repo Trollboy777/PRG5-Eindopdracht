@@ -1,3 +1,8 @@
+@if ($errors->has('error'))
+    <div class="alert alert-danger">
+        {{ $errors->first('error') }}
+    </div>
+@endif
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,6 +12,7 @@
     <title>Create Strategy</title>
 </head>
 <body>
+
 <form action="{{ route('strategy.store') }}" method="post">
     @csrf
     <div>

@@ -57,6 +57,13 @@ class StrategyController extends Controller
     public function store(Request $request)
     {
 
+        $user = auth()->user();
+        if ($user->comments->count() < 3) {
+            return redirect()->back()->withErrors([
+                'error' => 'Je moet minstens 3 reacties plaatsen voordat je een strategy kan aanmaken.',
+            ]);
+        }
+
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string|max:1000',

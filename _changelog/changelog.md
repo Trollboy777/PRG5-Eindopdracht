@@ -19,3 +19,5 @@ Ik heb de search functie ook af, zodat je kan zoeken op basis van de titel van e
 
 Ik heb de comment systeem af, dus je kan bij een specifieke strategy comments gaan plaatsen, natuurlijk als je alleen ingelogd bent. 27-10
 
+Je kan nu alleen een strategy maken als je minimaal 3 comments hebt (deeper validation) 29-10
+
