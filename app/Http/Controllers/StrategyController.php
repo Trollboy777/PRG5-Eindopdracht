@@ -17,7 +17,7 @@ class StrategyController extends Controller
     {
         $types = Tag::select('id','name')->get();
 
-        $query = Strategy::with('user', 'gymLeader'); // Start de query met relaties
+        $query = Strategy::with('user', 'gymLeader')->where('published', true); // Start de query met relaties
 
         // Als er een type is geselecteerd, pas de filter toe op basis van tag_id
         if ($request->has('type')) {
