@@ -21,5 +21,5 @@ Ik heb de comment systeem af, dus je kan bij een specifieke strategy comments ga
 
 Je kan nu alleen een strategy maken als je minimaal 3 comments hebt (deeper validation) 29-10
 
-Je hebt nu een admin rol die een eigen pagina heeft waarin die de strategies kan goedkeuren of niet. Als het is goedgekeurd dan zie je het bij de index page van de strategies. 
+Je hebt nu een admin rol die een eigen pagina heeft waarin die de strategies kan goedkeuren of niet. Als het is goedgekeurd dan zie je het bij de index page van de strategies. 2-11
 
