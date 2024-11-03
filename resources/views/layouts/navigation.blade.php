@@ -14,6 +14,9 @@
                     {{ __('Dashboard') }}
                 </x-nav-link>
             </div>
+            <x-nav-link :href="route('strategy.index')" :active="request()->routeIs('strategy.index')">
+                {{ __('Strategy') }}
+            </x-nav-link>
         </div>
 
 
@@ -35,6 +38,11 @@
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
+                        @if (Auth::user()->role === 'admin')
+                            <x-dropdown-link :href="route('admin.strategies')">
+                                {{ __('Admin Strategies') }}
+                            </x-dropdown-link>
+                        @endif
 
 
                         <form method="POST" action="{{ route('logout') }}">
@@ -53,7 +61,7 @@
         @guest
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Registreer</a>
+                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Registrer</a>
             </div>
         @endguest
 
